@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body style="font-family: 'Times New Roman', Times, serif; background-image:url('https://wallpaperaccess.com/full/17520.jpg'); background-size: cover; height:100vh; margin:0;">
+        
+        <div id="top" style="position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; gap: 12px; flex-wrap: wrap; backdrop-filter: blur(8px); background-color: rgba(36, 25, 102, 0.45); z-index: 999; box-sizing: border-box;">
+            <p id="welcomeopen" style="cursor: pointer; margin: 0; flex-shrink: 0; font-weight: 700; color: #fff; background-color: rgba(255,255,255,0.08); padding: 8px 14px; border-radius: 16px;">
+                nimOS
+            </p>
+            <p id="timeElement" style="margin: 0; color: #fff; font-weight: 500; background-color: rgba(255,255,255,0.08); padding: 8px 14px; border-radius: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 180px);">
+            </p>
+        </div>
+
+        <div id="window" class="window" style="top: calc(50% - 90px); left: calc(50% - 100px);"> 
+            <div class="closebutton" id="welcomeclose"></div>
+            <div style="padding-top: 10px;">
+            <h1 style="margin: 12px; color: rgb(0, 0, 0); text-align: center; font-size: 24px;">NimOS</h1>
+            <h2 style="margin: 12px; color: rgb(0, 0, 0); text-align: center; font-size: 18px;">a web-based operating system</h2>
+            
+            </div>
+
+        </div>
+
+        <div id="desktopApps" style="padding-top: 64px; padding-left: 16px;">
+            <div id="notebookIcon" style="text-align: center; padding: 16px; width: fit-content; backdrop-filter: blur(16px); cursor: pointer;">
+                <img src="https://thf.bing.com/th/id/OIP.K_W8FXHhtq4HZlxe3kWKcAHaHa?w=201&h=200&c=7&r=0&o=7&cb=thfc1falcon2&pid=1.7&rm=3" style="width: 64px; height: 64px; border-radius: 16px;">
+                <p style="margin: 0px; color: #fff;">Notebook</p>
+            </div>
+        </div>
+
+        <div id="notes" class="window" style="display: none; top: calc(50% - 90px); left: calc(50% - 100px); width: 385px; height: fit-content;">
+            <div id="notesheader" class="titlebar" style="height: 24px; cursor: move;"></div>
+            <div class="closebutton" id="notesclose"></div>
+            <div style="padding: 32px;">
+                <h2 style="color:rgb(0, 0, 0); margin-top:0;">Notes</h2>
+                <textarea id="notesArea" style="width: 100%; height: 200px; border-radius: 8px; padding: 12px; font-size: 16px; width: 300px;"></textarea>
+                <button id="saveNotes" style="margin-top:12px; padding: 8px 16px; border-radius: 8px; cursor: pointer;">Save</button>
+            </div>
+        </div>
+
+        <div id="desktopApps" style="padding-top: 64px; padding-left: 16px;">
+            <div id="calculatorIcon" class="selected" style="text-align: center; padding: 16px; width: fit-content; backdrop-filter: blur(16px); cursor: pointer;">
+                <img src="https://thf.bing.com/th/id/OIP.TzMRaRUpRynd8UBA3ctKYgHaG-?w=191&h=180&c=7&r=0&o=7&cb=thfc1falcon2&pid=1.7&rm=3" style="width: 64px; height: 64px; border-radius: 16px;">
+                <p style="margin: 0px; color: #fff;">Calculator</p>
+            </div>
+        </div>
+
+        <div id="calculator" class="window" style="display: none; top: calc(50% - 90px); left: calc(50% - 100px); width: 270px; height: fit-content;">
+            <div class="titlebar" style="height: 24px; cursor: move;"></div>
+            <div class="closebutton" id="calculatorclose"></div>
+            <div class="calculator">
+                <input type="text" id="display" class="display" disabled>
+                <div class="buttons">
+                    <button class="button clear" onclick="clearDisplay()">C</button>
+                    <button class="button operator" onclick="appendOperation('/')">/</button>
+                    <button class="button operator" onclick="appendOperation('*')">*</button>
+                    <button class="button operator" onclick="appendOperation('-')">-</button>
+                    <button class="button operator" onclick="appendOperation('+')">+</button>
+                    <button class="button equal" onclick="calculate()">=</button>
+                    <button class="button" onclick="appendNumber('1')">1</button>
+                    <button class="button" onclick="appendNumber('2')">2</button>
+                    <button class="button" onclick="appendNumber('3')">3</button>
+                    <button class="button" onclick="appendNumber('4')">4</button>
+                    <button class="button" onclick="appendNumber('5')">5</button>
+                    <button class="button" onclick="appendNumber('6')">6</button>
+                    <button class="button" onclick="appendNumber('7')">7</button>
+                    <button class="button" onclick="appendNumber('8')">8</button>
+                    <button class="button" onclick="appendNumber('9')">9</button>
+                    <button class="button" onclick="appendNumber('0')">0</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
