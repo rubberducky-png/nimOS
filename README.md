@@ -21,7 +21,7 @@ nimOS is my first full coding project built using HTML, CSS, and JavaScript. It�
   5. Notes App  
 - A draggable notes window with a text area and save functionality.
 
-Tech Stack
+**Tech Stack**
 1. HTML — structure of the OS and app windows
 
 2. CSS — styling, layout, and space‑themed visuals
@@ -30,7 +30,7 @@ Tech Stack
 
 
 
-My Goals of the Project:
+**My Goals of the Project:**
 1. Learn how to build interactive UI components with JavaScript
 
 2. Practice DOM manipulation and event handling
@@ -39,9 +39,9 @@ My Goals of the Project:
 
 4. Create a fun, themed project that feels like a tiny operating system
 
-My Considered Future Improvements
-Add more built‑in apps (file explorer, terminal, music player)
+**My Considered Future Improvements:**
+ - Add more built‑in apps (file explorer, terminal, music player)
 
-Improve window snapping and resizing
+ - Improve window snapping and resizing
 
 Create a boot animation or login screen
