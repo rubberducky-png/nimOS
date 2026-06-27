@@ -1,4 +1,4 @@
-nimOS — A Web‑Based Space‑Themed Operating System
+**nimOS** — A Web‑Based Space‑Themed Operating System
 nimOS is my first full coding project built using HTML, CSS, and JavaScript. It’s a web‑based operating system inspired by classic desktop environments and styled with a space theme. The project focuses on UI elements, draggable windows, and simple built‑in apps.
 
 Includes:
