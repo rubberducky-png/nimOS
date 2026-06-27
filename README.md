@@ -1,40 +1,34 @@
 **nimOS** — A Web‑Based Space‑Themed Operating System
 nimOS is my first full coding project built using HTML, CSS, and JavaScript. It’s a web‑based operating system inspired by classic desktop environments and styled with a space theme. The project focuses on UI elements, draggable windows, and simple built‑in apps.
 
-Includes:
-Space‑themed UI  
-A clean interface with a cosmic background and white, contrasting elements.
 
-Draggable Windows 
-Every app opens inside a movable window in an attempt to make nimOS feel like a desktop.
+**Includes**:
+- Space‑themed UI  
+- A clean interface with a cosmic background and white, contrasting elements.
 
-Closable & Openable Apps  
-Windows can be opened from the desktop icons and closed using custom UI buttons.
+  1. Draggable Windows 
+  - Every app opens inside a movable window in an attempt to make nimOS feel like a desktop.
 
-Introduction Window  
-A welcome screen that appears on launch to introduce the OS.
+  2. Closable & Openable Apps  
+- Windows can be opened from the desktop icons and closed using custom UI buttons.
 
-Calculator App  
-A simple, functional calculator built with JavaScript.
+  3. Introduction Window  
+- A welcome screen that appears on launch to introduce the OS.
 
-Notes App  
-A draggable notes window with a text area and save functionality.
+  4. Calculator App  
+- A simple, functional calculator built with JavaScript.
+
+  5. Notes App  
+- A draggable notes window with a text area and save functionality.
 
 Tech Stack
-HTML — structure of the OS and app windows
+1. HTML — structure of the OS and app windows
 
-CSS — styling, layout, and space‑themed visuals
+2. CSS — styling, layout, and space‑themed visuals
 
-JavaScript — window logic, interactivity, draggable behavior, and app functionality
+3. JavaScript — window logic, interactivity, draggable behavior, and app functionality
 
-Project Structure
-Code
-/nimOS
-│── index.html
-│── style.css
-│── script.js
-│── /assets
-│     └── icons, images, etc.
+
 
 My Goals of the Project:
 1. Learn how to build interactive UI components with JavaScript
