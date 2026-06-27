@@ -1,0 +1,249 @@
+setInterval(function () {
+  document.querySelector("#timeElement").innerHTML = new Date().toLocaleString();
+}, 1000);
+
+var welcomeScreen = document.querySelector("#window");
+var notesScreen = document.querySelector("#notes");
+var calculatorScreen = document.querySelector("#calculator");
+var welcomeScreenClose = document.querySelector("#welcomeclose");
+var welcomeScreenOpen = document.querySelector("#welcomeopen");
+var notesScreenClose = document.querySelector("#notesclose");
+var calculatorScreenClose = document.querySelector("#calculatorclose");
+var notebookIcon = document.querySelector("#notebookIcon");
+var calculatorIcon = document.querySelector("#calculatorIcon");
+var topBar = document.querySelector("#top");
+var notesArea = document.getElementById("notesArea");
+var saveNotesBtn = document.getElementById("saveNotes");
+
+function dragElement(element) {
+  if (!element) return;
+
+  var initialX = 0;
+  var initialY = 0;
+  var currentX = 0;
+  var currentY = 0;
+
+  element.addEventListener("mousedown", function (e) {
+    // Don't drag if clicking on interactive elements
+    if (e.target.tagName === "TEXTAREA" || 
+        e.target.tagName === "BUTTON" || 
+        e.target.id.includes("close") ||
+        e.target.classList.contains("closebutton")) {
+      return;
+    }
+    startDragging(e);
+  });
+
+  function startDragging(e) {
+    e = e || window.event;
+    e.preventDefault();
+
+    initialX = e.clientX;
+    initialY = e.clientY;
+
+    document.onmouseup = stopDragging;
+    document.onmousemove = dragMouseMove;
+  }
+
+  function dragMouseMove(e) {
+    e = e || window.event;
+    e.preventDefault();
+
+    currentX = initialX - e.clientX;
+    currentY = initialY - e.clientY;
+    initialX = e.clientX;
+    initialY = e.clientY;
+
+    element.style.top = element.offsetTop - currentY + "px";
+    element.style.left = element.offsetLeft - currentX + "px";
+  }
+
+  function stopDragging() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+function closeWindow(element) {
+  if (!element) return;
+  element.style.display = "none";
+  if (element === notesScreen && notebookIcon) {
+    notebookIcon.classList.remove("selected");
+  }
+  if (element === calculatorScreen && calculatorIcon) {
+    calculatorIcon.classList.remove("selected");
+  }
+}
+
+var biggestIndex = 1;
+function openWindow(element) {
+  if (!element) return;
+  element.style.display = "flex";
+  biggestIndex++;
+  element.style.zIndex = biggestIndex;
+  if (topBar) {
+    topBar.style.zIndex = biggestIndex + 1;
+  }
+}
+
+function handleWindowTap(element) {
+  if (!element) return;
+  biggestIndex++;
+  element.style.zIndex = biggestIndex;
+  if (topBar) {
+    topBar.style.zIndex = biggestIndex + 1;
+  }
+}
+
+function addWindowTapHandling(element) {
+  if (!element) return;
+  element.addEventListener("mousedown", function () {
+    handleWindowTap(element);
+  });
+}
+
+function selectIcon(element) {
+  if (!element) return;
+  element.classList.add("selected");
+}
+
+function deselectIcon(element) {
+  if (!element) return;
+  element.classList.remove("selected");
+}
+
+function loadNotes() {
+  if (!notesArea) return;
+  var saved = localStorage.getItem("nimOS_notes");
+  if (saved !== null) {
+    notesArea.value = saved;
+  }
+}
+
+function toggleWindow(icon, windowEl, onOpen) {
+  if (!icon || !windowEl) return;
+  if (icon.classList.contains("selected")) {
+    icon.classList.remove("selected");
+    closeWindow(windowEl);
+  } else {
+    icon.classList.add("selected");
+    if (onOpen) onOpen();
+    openWindow(windowEl);
+  }
+}
+
+if (welcomeScreen) {
+  dragElement(welcomeScreen);
+  addWindowTapHandling(welcomeScreen);
+}
+
+if (notesScreen) {
+  dragElement(notesScreen);
+  addWindowTapHandling(notesScreen);
+}
+
+if (calculatorScreen) {
+  dragElement(calculatorScreen);
+  addWindowTapHandling(calculatorScreen);
+}
+
+if (welcomeScreenClose) {
+  welcomeScreenClose.addEventListener("click", function () {
+    closeWindow(welcomeScreen);
+  });
+}
+
+if (welcomeScreenOpen) {
+  welcomeScreenOpen.addEventListener("click", function () {
+    openWindow(welcomeScreen);
+  });
+}
+
+if (calculatorScreenClose) {
+  calculatorScreenClose.addEventListener("click", function () {
+    closeWindow(calculatorScreen);
+  });
+}
+
+if (calculatorIcon) {
+  calculatorIcon.addEventListener("click", function () {
+    toggleWindow(calculatorIcon, calculatorScreen);
+  });
+}
+
+if (notesScreenClose) {
+  notesScreenClose.addEventListener("click", function () {
+    closeWindow(notesScreen);
+  });
+}
+
+if (notebookIcon) {
+  notebookIcon.addEventListener("click", function () {
+    toggleWindow(notebookIcon, notesScreen, loadNotes);
+  });
+}
+
+if (saveNotesBtn) {
+  saveNotesBtn.addEventListener("click", function () {
+    if (!notesArea) return;
+    localStorage.setItem("nimOS_notes", notesArea.value);
+    alert("Notes saved!");
+  });
+}
+
+let currentInput = '';
+let currentOperation = '';
+let previousInput = '';
+
+function appendNumber(number) {
+  currentInput += number;
+  document.getElementById('display').value = `${previousInput} ${currentOperation} ${currentInput}`;
+}
+function appendOperation(operation) {
+  if (currentInput === '') return;
+  if (previousInput !== '') {
+    calculate();
+  }
+  currentOperation = operation;
+  previousInput = currentInput;
+  currentInput = '';
+  document.getElementById('display').value = `${previousInput} ${currentOperation}`;
+}
+function calculate() {
+  if (previousInput === '' || currentInput === '') return;
+  let result;
+  let prev = parseFloat(previousInput);
+  let current = parseFloat(currentInput);
+
+  switch (currentOperation) {
+    case '+':
+      result = prev + current;
+      break;
+    case '-':
+      result = prev - current;
+      break;
+    case '*':
+      result = prev * current;
+      break;
+    case '/':
+      if (current === 0) {
+        alert("Cannot divide by zero");
+        return;
+      }
+      result = prev / current;
+      break;
+    default:
+      return;
+  }
+
+  currentInput = result.toString();
+  currentOperation = '';
+  previousInput = '';
+  document.getElementById('display').value = currentInput;
+}
+function clearDisplay() {
+  currentInput = '';
+  previousInput = '';
+  currentOperation = '';
+  document.getElementById('display').value = '';
+}
